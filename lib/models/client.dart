@@ -1,7 +1,7 @@
 import 'package:user_control_learning_project/models/User.dart';
 
 class Client extends User {
-  List<String>? courses;
+  List<String>? courses = ['C#', 'JAVA', 'Flutter'];
 
   Client(
       {required super.id,

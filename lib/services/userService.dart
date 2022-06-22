@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:user_control_learning_project/interfaces/iuserService.dart';
 import 'package:user_control_learning_project/models/Client.dart';
 import 'package:user_control_learning_project/models/Admin.dart';
-import 'package:user_control_learning_project/models/user.dart';
+import 'package:user_control_learning_project/models/User.dart';
 
 class UserService implements IUserService {
   List<Client> clients = [];
@@ -60,5 +60,20 @@ class UserService implements IUserService {
       }
     }
     return false;
+  }
+
+  @override
+  List<User> getByName({String? name}) {
+    List<User> users = [];
+    users
+      ..addAll(clients.map((e) => e as User))
+      ..addAll(admins.map((e) => e as User));
+    if (name != null && name.isNotEmpty) {
+      List<User> userList =
+          users.where((element) => element.name == name).toList();
+      return userList;
+    } else {
+      return users;
+    }
   }
 }
