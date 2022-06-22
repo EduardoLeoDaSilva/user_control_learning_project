@@ -40,14 +40,15 @@ class UserService implements IUserService {
   @override
   bool login({required String email, required String password}) {
     // TODO: implement login
-    List<User> users = [];
+    List<User?> users = [];
     users
       ..addAll(clients.map((e) => e as User))
       ..addAll(admins.map((e) => e as User));
 
     User? user =
-        users.firstWhere((element) => element.email == email, orElse: () {
+        users.firstWhere((element) => element?.email == email, orElse: () {
       print("Usuario não achado");
+      return null;
     });
 
     if (user == null) {
